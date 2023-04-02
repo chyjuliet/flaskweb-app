@@ -40,7 +40,7 @@
 
     - name: Allow incoming traffic on port 5000
       command: ufw allow 5000/tcp
-S
+
     - name: Restart UFW
       systemd:
         name: ufw
