@@ -2,7 +2,9 @@
 - name: Deploy flask app
   hosts: n4
   become: true
-  remote_user: root
+  remote_user: ubuntu
+  become_method: sudo
+  vars:
 
   tasks:
     - name: Update apt cache
@@ -37,11 +39,7 @@
         state: present
 
     - name: Allow incoming traffic on port 5000
-      ufw: 
-        rule: allow
-        proto: tcp
-        port: 5000
-        comment: "Allow incoming traffic to flask app"
+      command: ufw allow 5000/tcp
 
     - name: Restart UFW
       systemd:
