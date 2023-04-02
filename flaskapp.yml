@@ -30,7 +30,7 @@
 
     - name: Copy Flask app files
       copy:
-        src: app.py
+        src: flaskweb-app.py
         dest: /opt/flaskweb/flaskweb-app.py
 
     - name: Install flask using pip
