@@ -25,7 +25,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'classwork01', inventory: 'host.ini', playbook: 'flaskapp01.yml'
+                ansiblePlaybook credentialsId: 'privatekey', installation: 'class-project2', inventory: 'hosts.ini', playbook: 'flaskapp.yml'
             }
         }
     }
