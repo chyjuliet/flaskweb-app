@@ -1,0 +1,30 @@
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                git branch: 'main', credentialsId: 'git', url: 'https://github.com/chyjuliet/flaskweb-app.git'
+            }
+        }
+
+        stage('build Ansible playbook') {
+            steps {
+                git branch: 'main', credentialsId: 'git', url: 'https://github.com/chyjuliet/flaskweb-app.git'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'ansible-playbook flaskapp.yml'
+            }
+        }
+
+        stage('deploy Ansible playbook') {
+            steps {
+                ansiblePlaybook credentialsId: 'privatekey', installation: 'class-project2', inventory: 'hosts.ini', playbook: 'flaskapp.yml'
+            }
+        }
+    }
+}
